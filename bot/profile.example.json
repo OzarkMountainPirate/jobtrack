@@ -1,0 +1,136 @@
+{
+  "_comment": [
+    "A worked example. Copy to data/profile.json, replace everything, chmod 600.",
+    "This file is the single place anything personal lives. The scoring prompt,",
+    "the gap analysis and the cover letters are all built from it, so the more",
+    "honest and specific it is, the better every one of them gets.",
+    "The real profile is never committed - .gitignore covers data/."
+  ],
+
+  "identity": {
+    "name": "Alex Doe",
+    "location": "Springfield, ST",
+    "phone": "555-0100",
+    "email": "alex@example.com",
+    "headline": "Service Desk Lead | Systems and Cloud Operations",
+    "links": {
+      "github": "github.com/example",
+      "site": "https://example.com"
+    }
+  },
+
+  "preferences": {
+    "_comment": "current_annual is what any offer is compared against. target_salary only ever lifts a lead; nothing here filters one out except the relocation floor.",
+    "current_annual": 52000,
+    "target_salary": { "min": 85000, "stretch": 100000 },
+    "salary_floor": { "drivable": 0, "remote": 0, "relocation": 95000 },
+    "commute_from": "Springfield, ST",
+    "max_commute_minutes": 60,
+    "commute_towns": [
+      "Springfield", "Rivertown", "Fairview", "Oakdale", "Milton",
+      "Greenville", "Ashford"
+    ],
+    "work_modes": ["remote", "hybrid", "onsite"],
+    "relocation": "Only for a substantial raise - see salary_floor.relocation.",
+    "notes": "No weekend on-call. Will not take a commission-only role."
+  },
+
+  "search": {
+    "_comment": [
+      "This section builds the scoring prompt. The ladder is your own order of",
+      "preference - the model's job is to place a posting on it, not to have",
+      "opinions about your career. Be blunt; it reads better than being fair."
+    ],
+    "summary": "Twelve years in IT support and systems administration, the last four leading a service desk for a 900-seat manufacturer. Windows Server and Active Directory, Microsoft 365, Intune, VMware, networking and VLANs, backup and recovery, PowerShell and Python scripting, and a home lab running Docker, Proxmox and Terraform.",
+    "ladder": [
+      { "score": 9, "families": "Systems administrator, infrastructure engineer, IT manager.",
+        "note": "Work already done - any level is fine." },
+      { "score": 8, "families": "Cloud operations, platform engineering, DevOps, SRE.",
+        "note": "The move being made. Junior and associate titles welcome." },
+      { "score": 7, "families": "Security operations, SOC analyst, vulnerability management." },
+      { "score": 6, "families": "Service desk and desktop support at any tier, IT technician." },
+      { "score": 4, "families": "Adjacent technical work that leads toward the above: field service, AV, low voltage, data analyst." }
+    ],
+    "not_my_field": "sales, account management, marketing, finance, accounting, clinical or medical, nursing, teaching, driving, warehouse, food service, administrative assistant, human resources, customer success, project coordination, ERP or application consulting, business analysis",
+    "pivot_into": [
+      "devops", "sre", "site reliability", "platform engineer",
+      "cloud engineer", "cloud architect", "kubernetes", "terraform"
+    ],
+    "examples": {
+      "Systems Administrator": 9,
+      "Junior DevOps Engineer": 8,
+      "Site Reliability Engineer": 8,
+      "SOC Analyst I": 7,
+      "Service Desk Technician": 6,
+      "Field Service Technician II": 4,
+      "Summer Intern - Helpdesk": 3,
+      "Customer Success Manager": 0,
+      "Surgical Technologist": 0
+    },
+    "remote_bonus": 2,
+    "remote_bonus_needs_fit": 5
+  },
+
+  "blockers": {
+    "_comment": [
+      "A gap is something missing. A blocker is a wall, and costs 3 points each.",
+      "writes: scripting you genuinely do - anything here stops being a wall.",
+      "Everything else in gaps.DEV_LANGS stays one."
+    ],
+    "writes": ["python", "bash", "shell", "powershell", "sql", "yaml", "hcl"],
+    "certifications_held": ["comptia a+", "network+", "az-104"],
+    "clearance_is_a_blocker": false
+  },
+
+  "certifications": ["CompTIA A+", "CompTIA Network+", "Microsoft AZ-104"],
+
+  "skills": {
+    "Systems": ["Windows Server", "Active Directory", "Group Policy", "Linux"],
+    "Cloud": ["Azure", "Microsoft 365", "Entra ID", "Intune"],
+    "Virtualization": ["VMware vSphere", "Proxmox", "Docker"],
+    "Network": ["VLANs", "routing", "firewalls", "VPN"],
+    "Automation": ["PowerShell", "Python", "Terraform", "Ansible"]
+  },
+
+  "employment": [
+    {
+      "employer": "Example Manufacturing Co.",
+      "title": "Service Desk Lead",
+      "start": "2022",
+      "end": "present",
+      "location": "Springfield, ST",
+      "highlights": [
+        "Lead a three-person desk covering 900 users across two plants.",
+        "Rebuilt patching and imaging on Intune, replacing a manual process.",
+        "Run backup and restore testing on a quarterly schedule."
+      ],
+      "reason_for_leaving": null
+    },
+    {
+      "employer": "Example County Schools",
+      "title": "Systems Administrator",
+      "start": "2016",
+      "end": "2022",
+      "location": "Rivertown, ST",
+      "highlights": [
+        "Administered Active Directory, file services and VMware for 14 sites.",
+        "Replaced the wireless network across the district."
+      ],
+      "reason_for_leaving": "Wanted to work on infrastructure full time."
+    }
+  ],
+
+  "education": [
+    { "institution": "State Community College", "credential": "AAS, Network Administration", "note": "2014" }
+  ],
+
+  "references": [
+    { "name": "Pat Example", "relationship": "former manager", "note": "Knows the Intune rebuild.", "contact": "pat@example.com" }
+  ],
+
+  "writing_rules": [
+    "Do not claim ITIL - familiar with the practices, holds no certification.",
+    "Do not claim any vendor certification not listed under certifications.",
+    "Never describe the service desk lead role as 'management' - it is a lead role with no reports."
+  ]
+}

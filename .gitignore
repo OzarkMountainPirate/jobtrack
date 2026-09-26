@@ -1,0 +1,30 @@
+# Python cache/bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.env/
+venv/
+.venv/
+
+# Secrets and local config
+.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Data files
+*.csv
+*.xlsx
+*.csv#
+*.env
+
+# Everything personal lives here: profile, database, tokens, watches.
+data/
+changedetection/
+*.db
+*.db-wal
+*.db-shm

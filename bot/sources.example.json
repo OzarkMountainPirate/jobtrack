@@ -1,0 +1,94 @@
+{
+  "_comment": [
+    "Copy to data/sources.json. One entry per source; 'kind' picks the adapter.",
+    "Set enabled=false to park a source without deleting it.",
+    "",
+    "role_filter at the top level is the default every source inherits: a regex",
+    "the job TITLE must match to be ingested. The one shipped in sources.py is",
+    "an IT example - replace it with your own field. Setting it to null on a",
+    "source accepts everything from that source, which is what you want for an",
+    "employer board where you would take any opening.",
+    "",
+    "location_filter does the same against the location string. Pair it with",
+    "role_filter: null on a single-employer board to mean 'anything, near me'.",
+    "",
+    "IMPORTANT: this file is read at runtime and OVERRIDES the defaults in",
+    "sources.py. Changing DEFAULT_ROLE_FILTER in code does nothing once this",
+    "file exists. That has caught people out."
+  ],
+
+  "role_filter": "(?i)\\b(sysadmin|systems? admin\\w*|devops|sre\\b|help ?desk|service desk|network (admin\\w*|engineer)|security (engineer|analyst)|it (support|technician|specialist|manager|director))\\b",
+
+  "sources": [
+    {
+      "_": "Remote job boards. No token needed, just a search phrase.",
+      "kind": "remotive", "query": "system administrator", "enabled": true
+    },
+    { "kind": "remoteok", "query": "devops", "enabled": true },
+    { "kind": "weworkremotely", "category": "remote-devops-sysadmin-jobs", "enabled": true },
+
+    {
+      "_": "ATS boards. The token is the company slug in the board's URL:",
+      "__": "job-boards.greenhouse.io/TOKEN, jobs.lever.co/TOKEN, jobs.ashbyhq.com/TOKEN",
+      "kind": "greenhouse", "token": "example-co", "enabled": false
+    },
+    { "kind": "lever", "token": "example-co", "enabled": false },
+    { "kind": "ashby", "token": "example-co", "enabled": false },
+    { "kind": "workable", "token": "example-co", "enabled": false },
+    { "kind": "bamboohr", "token": "exampleco", "company": "Example Co", "enabled": false },
+
+    {
+      "_": "Workday. tenant and site come out of the careers URL:",
+      "__": "TENANT.wdN.myworkdayjobs.com/en-US/SITE",
+      "kind": "workday", "tenant": "example", "site": "Careers", "wd": "wd1",
+      "company": "Example Corp", "enabled": false
+    },
+
+    {
+      "_": "Paylocity recruiting boards. The token is the UUID in the board URL.",
+      "kind": "paylocity", "token": "00000000-0000-0000-0000-000000000000",
+      "company": "Example MSP",
+      "role_filter": null,
+      "location_filter": "(?i)(, ?ST\\b|remote)",
+      "enabled": false
+    },
+
+    {
+      "_": "NeoGov / governmentjobs.com. agency is the slug in the portal URL:",
+      "__": "governmentjobs.com/careers/AGENCY",
+      "kind": "neogov", "agency": "examplecity", "company": "City of Example",
+      "role_filter": null, "enabled": false
+    },
+
+    {
+      "_": "Frontline/AppliTrack school district boards. Give it the URL you see.",
+      "__": "salary_schedule is optional: where the district publishes its pay",
+      "___": "scale. Used when a posting states no pay of its own.",
+      "kind": "applitrack",
+      "url": "https://xxx.applitrack.com/exampledistrict/onlineapp/JobPostings/view.asp",
+      "company": "EXAMPLE R-III",
+      "salary_schedule": "https://www.exampledistrict.org/salary-schedule.pdf",
+      "enabled": false
+    },
+
+    {
+      "_": "HireTrue / ce3 boards, used by several US state governments.",
+      "__": "host, board_key and board_id are all visible in the board's URL.",
+      "kind": "hiretrue", "host": "careers.example.gov", "board_key": "417",
+      "board_id": "00000000-0000-0000-0000-000000000000",
+      "employer": "State of Example", "enabled": false
+    },
+
+    {
+      "_": "Advanced Classifieds & Directory Pro - small regional job boards.",
+      "kind": "acadp", "url": "https://example.com/job-listings",
+      "company": "Example Regional Board", "pages": 3, "enabled": false
+    },
+
+    {
+      "_": "Career pages with no feed at all, watched by changedetection.io.",
+      "__": "Add the watches in its own UI and tag them; this reads that tag.",
+      "kind": "changedetection", "tag": "careers", "enabled": false
+    }
+  ]
+}
