@@ -432,5 +432,6 @@ quietly disappear.
 
 ## License
 
-None yet — add one before you rely on this. Without a license file, default
-copyright applies.
+Copyright (C) 2026 Carl Alcott
+
+Released under the [GNU General Public License v3.0 or later](LICENSE).
